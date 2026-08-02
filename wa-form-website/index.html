@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Langsung ke WA Aja 🎀</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-a: #FFE9F3;
+    --bg-b: #E3F4FF;
+    --pink: #FF8FC4;
+    --pink-deep: #FF5FA8;
+    --sky: #7FD0FF;
+    --sky-deep: #4FC3F7;
+    --lavender: #E3C6FF;
+    --card: rgba(255, 255, 255, 0.72);
+    --card-border: rgba(255, 143, 196, 0.35);
+    --text: #4A3B47;
+    --muted: #9A8595;
+    --danger: #E8567A;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: linear-gradient(135deg, var(--bg-a), var(--bg-b));
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  /* ---------- LIVING BACKGROUND ---------- */
+  .blob-field{
+    position:fixed;
+    inset:0;
+    z-index:0;
+    overflow:hidden;
+    pointer-events:none;
+  }
+  .blob{
+    position:absolute;
+    border-radius:50%;
+    filter: blur(60px);
+    opacity:0.55;
+    will-change: transform;
+  }
+  .b1{ width:480px; height:480px; background:var(--pink); top:-12%; left:-10%; animation: float1 17s ease-in-out infinite; }
+  .b2{ width:420px; height:420px; background:var(--sky); bottom:-14%; right:-8%; animation: float2 21s ease-in-out infinite; }
+  .b3{ width:320px; height:320px; background:var(--lavender); top:38%; right:22%; opacity:0.45; animation: float3 15s ease-in-out infinite; }
+  .b4{ width:260px; height:260px; background:var(--sky-deep); bottom:8%; left:10%; opacity:0.35; animation: float1 19s ease-in-out infinite reverse; }
+
+  @keyframes float1{
+    0%,100%{ transform: translate(0,0) scale(1); }
+    33%{ transform: translate(55px,35px) scale(1.1); }
+    66%{ transform: translate(-25px,55px) scale(0.95); }
+  }
+  @keyframes float2{
+    0%,100%{ transform: translate(0,0) scale(1); }
+    50%{ transform: translate(-65px,-45px) scale(1.15); }
+  }
+  @keyframes float3{
+    0%,100%{ transform: translate(0,0) scale(1); }
+    50%{ transform: translate(45px,-35px) scale(1.2); }
+  }
+
+  /* floating sparkles */
+  .particle{
+    position:fixed;
+    z-index:1;
+    pointer-events:none;
+    animation: drift linear infinite;
+    font-size:14px;
+    opacity:0;
+  }
+  @keyframes drift{
+    0%{ transform: translateY(0) rotate(0deg); opacity:0; }
+    10%{ opacity:0.9; }
+    90%{ opacity:0.7; }
+    100%{ transform: translateY(-100vh) rotate(180deg); opacity:0; }
+  }
+
+  /* ---------- LAYOUT ---------- */
+  .page{
+    position:relative;
+    z-index:2;
+    max-width:640px;
+    margin:0 auto;
+    padding:56px 20px 60px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,143,196,0.16);
+    border:1px solid rgba(255,95,168,0.35);
+    color:var(--pink-deep);
+    font-family:'Baloo 2', sans-serif;
+    font-weight:600;
+    font-size:13px;
+    padding:8px 16px;
+    border-radius:999px;
+    margin-bottom:22px;
+    letter-spacing:0.02em;
+  }
+  .badge .dot{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--pink-deep);
+    box-shadow:0 0 0 4px rgba(255,95,168,0.2);
+  }
+
+  h1{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:clamp(30px, 8vw, 48px);
+    line-height:1.1;
+    margin:0 0 16px;
+    letter-spacing:-0.01em;
+  }
+  h1 .hl{
+    background: linear-gradient(135deg, var(--pink-deep), var(--sky-deep));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .lead{
+    color:var(--muted);
+    font-size:16px;
+    line-height:1.6;
+    max-width:44ch;
+    margin:0 0 40px;
+  }
+
+  /* ---------- CARD / FORM ---------- */
+  .card{
+    width:100%;
+    background:var(--card);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border:1px solid var(--card-border);
+    border-radius:26px;
+    padding:32px 28px;
+    box-shadow: 0 30px 60px -20px rgba(255,143,196,0.35);
+    text-align:left;
+  }
+
+  /* chat preview */
+  .phone-strip{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:rgba(255,255,255,0.55);
+    border:1px solid rgba(255,143,196,0.25);
+    border-radius:16px;
+    padding:12px 14px;
+    margin-bottom:24px;
+  }
+  .avatar{
+    width:38px;height:38px;border-radius:50%;
+    background:linear-gradient(135deg, var(--pink-deep), var(--sky-deep));
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Baloo 2',sans-serif;font-weight:700;font-size:15px;color:#fff;
+    flex-shrink:0;
+  }
+  .phone-strip .info{ flex:1; min-width:0; }
+  .phone-strip .pname{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:600;
+    font-size:14px;
+    color:var(--text);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .phone-strip .pnum{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--pink-deep);
+  }
+  .phone-strip .pnum.empty{ color:var(--muted); font-style:italic; font-family:'Inter',sans-serif; }
+  .wa-icon{ flex-shrink:0; opacity:0.85; }
+
+  label{
+    display:block;
+    font-family:'Baloo 2', sans-serif;
+    font-size:13px;
+    font-weight:600;
+    color:var(--pink-deep);
+    margin-bottom:8px;
+  }
+  .field{ margin-bottom:18px; }
+  .input-shell{ position:relative; display:flex; align-items:center; }
+  .input-shell .prefix{
+    position:absolute; left:16px;
+    color:var(--muted);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    pointer-events:none;
+  }
+  input{
+    width:100%;
+    background:rgba(255,255,255,0.7);
+    border:1.5px solid rgba(255,143,196,0.3);
+    border-radius:14px;
+    padding:14px 16px;
+    color:var(--text);
+    font-size:15px;
+    font-family:'Inter', sans-serif;
+    outline:none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  input#wa_number{ padding-left:46px; font-family:'IBM Plex Mono', monospace; }
+  input::placeholder{ color:#C4A9BD; }
+  input:focus{ border-color:var(--pink-deep); box-shadow:0 0 0 4px rgba(255,95,168,0.15); }
+  input.invalid{ border-color:var(--danger); }
+  .error-msg{ font-size:12px; color:var(--danger); margin-top:6px; min-height:14px; display:none; }
+  .error-msg.show{ display:block; }
+
+  button{
+    width:100%;
+    margin-top:6px;
+    background: linear-gradient(135deg, var(--pink-deep), var(--sky-deep));
+    color:#fff;
+    border:none;
+    border-radius:14px;
+    padding:16px 20px;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:16px;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    box-shadow: 0 14px 28px -10px rgba(255,95,168,0.55);
+  }
+  button:hover{ transform: translateY(-2px); box-shadow: 0 18px 34px -10px rgba(255,95,168,0.65); }
+  button:active{ transform: translateY(0); }
+  button:disabled{ opacity:0.6; cursor:not-allowed; transform:none; }
+
+  .status{ margin-top:14px; font-size:13px; text-align:center; min-height:18px; }
+  .status.ok{ color:var(--pink-deep); }
+  .status.err{ color:var(--danger); }
+
+  .privacy{
+    margin-top:20px;
+    font-size:11.5px;
+    color:var(--muted);
+    text-align:center;
+    line-height:1.5;
+  }
+
+  .success-check{ display:none; text-align:center; padding:16px 0 8px; }
+  .success-check.show{ display:block; }
+  .success-check .circle{
+    width:56px;height:56px;border-radius:50%;
+    background:rgba(255,143,196,0.2);
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 16px;
+  }
+  .success-check h3{ font-family:'Baloo 2', sans-serif; margin:0 0 6px; font-size:18px; color:var(--pink-deep); }
+  .success-check p{ color:var(--muted); font-size:13px; margin:0; }
+
+  @media (max-width: 480px){
+    .card{ padding:26px 20px; border-radius:22px; }
+    .page{ padding:40px 16px 48px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="blob-field">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="blob b4"></div>
+</div>
+
+<div class="page">
+  <div class="badge"><span class="dot"></span>Balas cepat lewat WhatsApp</div>
+
+  <h1>Nggak perlu lama,<br>langsung ke <span class="hl">WA</span> aja 🎀</h1>
+  <p class="lead">Isi nama dan nomor WhatsApp kamu di bawah. Begitu dikirim, kami langsung terima notifikasinya dan chat kamu duluan.</p>
+
+  <div class="card">
+    <div class="phone-strip">
+      <div class="avatar" id="avatarInitial">?</div>
+      <div class="info">
+        <div class="pname" id="previewName">Nama kamu di sini</div>
+        <div class="pnum empty" id="previewNumber">Nomor WA belum diisi</div>
+      </div>
+      <svg class="wa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF5FA8" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 01-12.4 7.5L3 20l1.1-5.4A8.5 8.5 0 1121 11.5z"/></svg>
+    </div>
+
+    <div id="formArea">
+      <form id="waForm" novalidate>
+        <div class="field">
+          <label for="full_name">Nama</label>
+          <div class="input-shell">
+            <input type="text" id="full_name" name="full_name" placeholder="Nama lengkap" autocomplete="name">
+          </div>
+          <div class="error-msg" id="err_name">Nama wajib diisi.</div>
+        </div>
+
+        <div class="field">
+          <label for="wa_number">Nomor WhatsApp</label>
+          <div class="input-shell">
+            <span class="prefix">+62</span>
+            <input type="tel" id="wa_number" name="wa_number" placeholder="812xxxxxxxx" autocomplete="tel" inputmode="numeric">
+          </div>
+          <div class="error-msg" id="err_number">Masukkan nomor yang valid (9–13 digit).</div>
+        </div>
+
+        <!-- Web3Forms: kunci akses & tujuan email -->
+        <input type="hidden" name="access_key" value="6186daa6-ad36-4246-b78d-adb054de2120">
+        <input type="hidden" name="subject" value="Data WA baru masuk">
+        <input type="hidden" name="from_name" value="Website WA Form">
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
+        <button type="submit" id="submitBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M21 11.5a8.5 8.5 0 01-12.4 7.5L3 20l1.1-5.4A8.5 8.5 0 1121 11.5z"/></svg>
+          Kirim & Chat Sekarang
+        </button>
+        <div class="status" id="statusMsg"></div>
+      </form>
+
+      <div class="success-check" id="successCheck">
+        <div class="circle">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF5FA8" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Terkirim! 🎀</h3>
+        <p>Data kamu sudah masuk. Kami akan chat kamu duluan.</p>
+      </div>
+    </div>
+
+    <p class="privacy">Nomor dan nama hanya digunakan untuk keperluan komunikasi terkait layanan ini.</p>
+  </div>
+</div>
+
+<script>
+  // ---- floating sparkles ----
+  const sparkles = ['✨','🎀','💗'];
+  for (let i = 0; i < 12; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.bottom = '-20px';
+    p.style.fontSize = (Math.random() * 10 + 10) + 'px';
+    p.style.animationDuration = (Math.random() * 12 + 12) + 's';
+    p.style.animationDelay = (Math.random() * 10) + 's';
+    document.body.appendChild(p);
+  }
+
+  // ---- live chat preview ----
+  const nameInput = document.getElementById('full_name');
+  const numberInput = document.getElementById('wa_number');
+  const previewName = document.getElementById('previewName');
+  const previewNumber = document.getElementById('previewNumber');
+  const avatarInitial = document.getElementById('avatarInitial');
+
+  nameInput.addEventListener('input', () => {
+    const v = nameInput.value.trim();
+    previewName.textContent = v.length ? v : 'Nama kamu di sini';
+    avatarInitial.textContent = v.length ? v.charAt(0).toUpperCase() : '?';
+  });
+
+  numberInput.addEventListener('input', () => {
+    numberInput.value = numberInput.value.replace(/[^0-9]/g, '');
+    const v = numberInput.value.trim();
+    if (v.length) {
+      previewNumber.textContent = '+62 ' + v;
+      previewNumber.classList.remove('empty');
+    } else {
+      previewNumber.textContent = 'Nomor WA belum diisi';
+      previewNumber.classList.add('empty');
+    }
+  });
+
+  // ---- validation + submit ----
+  const form = document.getElementById('waForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const statusMsg = document.getElementById('statusMsg');
+  const errName = document.getElementById('err_name');
+  const errNumber = document.getElementById('err_number');
+  const successCheck = document.getElementById('successCheck');
+
+  // Web3Forms: endpoint tetap sama untuk semua pengguna, yang membedakan adalah access_key di dalam form
+  const FORM_ENDPOINT = "https://api.web3forms.com/submit";
+  const ACCESS_KEY_PLACEHOLDER = "GANTI_DENGAN_ACCESS_KEY_KAMU";
+
+  function validate() {
+    let ok = true;
+    const nameVal = nameInput.value.trim();
+    const numVal = numberInput.value.trim();
+
+    if (nameVal.length < 2) {
+      nameInput.classList.add('invalid');
+      errName.classList.add('show');
+      ok = false;
+    } else {
+      nameInput.classList.remove('invalid');
+      errName.classList.remove('show');
+    }
+
+    if (numVal.length < 9 || numVal.length > 14) {
+      numberInput.classList.add('invalid');
+      errNumber.classList.add('show');
+      ok = false;
+    } else {
+      numberInput.classList.remove('invalid');
+      errNumber.classList.remove('show');
+    }
+    return ok;
+  }
+
+  [nameInput, numberInput].forEach(el => el.addEventListener('blur', validate));
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    const accessKeyValue = form.querySelector('input[name="access_key"]').value;
+    if (accessKeyValue === ACCESS_KEY_PLACEHOLDER || !accessKeyValue) {
+      statusMsg.textContent = 'Access Key belum diisi. Lihat petunjuk di README.';
+      statusMsg.className = 'status err';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Mengirim...';
+    statusMsg.textContent = '';
+    statusMsg.className = 'status';
+
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+      const result = await res.json();
+
+      if (res.ok && result.success) {
+        form.style.display = 'none';
+        successCheck.classList.add('show');
+      } else {
+        statusMsg.textContent = 'Gagal mengirim. Coba lagi sebentar lagi.';
+        statusMsg.className = 'status err';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Kirim & Chat Sekarang';
+      }
+    } catch (err) {
+      statusMsg.textContent = 'Terjadi kesalahan jaringan. Coba lagi.';
+      statusMsg.className = 'status err';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Kirim & Chat Sekarang';
+    }
+  });
+</script>
+
+</body>
+</html>
