@@ -2,464 +2,365 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#FFBFB3">
 <title>Langsung ke WA Aja 🎀</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg-a: #FFE9F3;
-    --bg-b: #E3F4FF;
-    --pink: #FF8FC4;
-    --pink-deep: #FF5FA8;
-    --sky: #7FD0FF;
-    --sky-deep: #4FC3F7;
-    --lavender: #E3C6FF;
-    --card: rgba(255, 255, 255, 0.72);
-    --card-border: rgba(255, 143, 196, 0.35);
-    --text: #4A3B47;
-    --muted: #9A8595;
-    --danger: #E8567A;
+    color-scheme:light;
+    --salmon:#FFBFB3; --blush:#FFE4DE; --shell:#FFF6F3; --rose:#FF9A90; --peach:#FFD9B8;
+    --ink:#4A1F2A; --muted:#7E4F55; --danger:#B3173B; --edge:#F1C7BF;
   }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
+  *{box-sizing:border-box}
+  html,body{margin:0}
   body{
-    background: linear-gradient(135deg, var(--bg-a), var(--bg-b));
-    color:var(--text);
-    font-family:'Inter', sans-serif;
-    min-height:100vh;
-    overflow-x:hidden;
-    position:relative;
+    min-height:100vh;min-height:100dvh;overflow-x:hidden;position:relative;
+    background:var(--salmon);color:var(--ink);
+    font-family:'Figtree',system-ui,sans-serif;font-size:16px;-webkit-font-smoothing:antialiased;
   }
+  /* ---------- live gradient ---------- */
+  .aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:linear-gradient(135deg,#FFB09E 0%,#FF9C9C 52%,#FFB3C7 100%)}
+  .orb{position:absolute;width:80vmax;height:80vmax;border-radius:50%;will-change:transform}
+  .o1{top:-34vmax;left:-24vmax;background:radial-gradient(circle,#FFC27A 0%,#FFC27A 12%,rgba(255,194,122,0) 68%);animation:d1 11s ease-in-out infinite alternate}
+  .o2{top:-20vmax;right:-34vmax;background:radial-gradient(circle,#FF6FA3 0%,#FF6FA3 10%,rgba(255,111,163,0) 68%);animation:d2 15s ease-in-out infinite alternate}
+  .o3{bottom:-40vmax;left:-22vmax;background:radial-gradient(circle,#FF6B5E 0%,#FF6B5E 10%,rgba(255,107,94,0) 68%);animation:d3 13s ease-in-out infinite alternate}
+  .o4{bottom:-30vmax;right:-26vmax;background:radial-gradient(circle,#CDB0FF 0%,#CDB0FF 10%,rgba(205,176,255,0) 68%);animation:d4 17s ease-in-out infinite alternate}
+  .o5{top:22%;left:30%;width:56vmax;height:56vmax;background:radial-gradient(circle,#FFD3E2 0%,rgba(255,211,226,0) 66%);opacity:.95;animation:d5 19s ease-in-out infinite alternate}
+  @keyframes d1{to{transform:translate(38vmax,24vmax) scale(1.25)}}
+  @keyframes d2{to{transform:translate(-40vmax,34vmax) scale(.85)}}
+  @keyframes d3{to{transform:translate(34vmax,-30vmax) scale(1.2)}}
+  @keyframes d4{to{transform:translate(-36vmax,-26vmax) scale(1.3)}}
+  @keyframes d5{to{transform:translate(-22vmax,26vmax) scale(1.35)}}
 
-  /* ---------- LIVING BACKGROUND ---------- */
-  .blob-field{
-    position:fixed;
-    inset:0;
-    z-index:0;
-    overflow:hidden;
-    pointer-events:none;
-  }
-  .blob{
-    position:absolute;
-    border-radius:50%;
-    filter: blur(60px);
-    opacity:0.55;
-    will-change: transform;
-  }
-  .b1{ width:480px; height:480px; background:var(--pink); top:-12%; left:-10%; animation: float1 17s ease-in-out infinite; }
-  .b2{ width:420px; height:420px; background:var(--sky); bottom:-14%; right:-8%; animation: float2 21s ease-in-out infinite; }
-  .b3{ width:320px; height:320px; background:var(--lavender); top:38%; right:22%; opacity:0.45; animation: float3 15s ease-in-out infinite; }
-  .b4{ width:260px; height:260px; background:var(--sky-deep); bottom:8%; left:10%; opacity:0.35; animation: float1 19s ease-in-out infinite reverse; }
-
-  @keyframes float1{
-    0%,100%{ transform: translate(0,0) scale(1); }
-    33%{ transform: translate(55px,35px) scale(1.1); }
-    66%{ transform: translate(-25px,55px) scale(0.95); }
-  }
-  @keyframes float2{
-    0%,100%{ transform: translate(0,0) scale(1); }
-    50%{ transform: translate(-65px,-45px) scale(1.15); }
-  }
-  @keyframes float3{
-    0%,100%{ transform: translate(0,0) scale(1); }
-    50%{ transform: translate(45px,-35px) scale(1.2); }
-  }
-
-  /* floating sparkles */
-  .particle{
-    position:fixed;
-    z-index:1;
-    pointer-events:none;
-    animation: drift linear infinite;
-    font-size:14px;
-    opacity:0;
-  }
-  @keyframes drift{
-    0%{ transform: translateY(0) rotate(0deg); opacity:0; }
-    10%{ opacity:0.9; }
-    90%{ opacity:0.7; }
-    100%{ transform: translateY(-100vh) rotate(180deg); opacity:0; }
-  }
-
-  /* ---------- LAYOUT ---------- */
   .page{
-    position:relative;
-    z-index:2;
-    max-width:640px;
-    margin:0 auto;
-    padding:56px 20px 60px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
+    position:relative;z-index:1;max-width:1040px;margin:0 auto;min-height:100vh;min-height:100dvh;
+    padding:max(28px,env(safe-area-inset-top)) 16px max(28px,env(safe-area-inset-bottom));
+    display:grid;gap:26px;align-content:center;
   }
-
-  .badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:rgba(255,143,196,0.16);
-    border:1px solid rgba(255,95,168,0.35);
-    color:var(--pink-deep);
-    font-family:'Baloo 2', sans-serif;
-    font-weight:600;
-    font-size:13px;
-    padding:8px 16px;
-    border-radius:999px;
-    margin-bottom:22px;
-    letter-spacing:0.02em;
-  }
-  .badge .dot{
-    width:7px;height:7px;border-radius:50%;
-    background:var(--pink-deep);
-    box-shadow:0 0 0 4px rgba(255,95,168,0.2);
-  }
-
   h1{
-    font-family:'Baloo 2', sans-serif;
-    font-weight:800;
-    font-size:clamp(30px, 8vw, 48px);
-    line-height:1.1;
-    margin:0 0 16px;
-    letter-spacing:-0.01em;
+    font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Rounded','Figtree',system-ui,sans-serif;font-weight:800;letter-spacing:-.035em;
+    font-size:clamp(36px,10vw,68px);line-height:1.04;margin:0 0 14px;color:var(--ink);
   }
-  h1 .hl{
-    background: linear-gradient(135deg, var(--pink-deep), var(--sky-deep));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  .lead{
-    color:var(--muted);
-    font-size:16px;
-    line-height:1.6;
-    max-width:44ch;
-    margin:0 0 40px;
-  }
+  .lead{font-size:17px;line-height:1.6;max-width:34ch;margin:0}
 
-  /* ---------- CARD / FORM ---------- */
-  .card{
-    width:100%;
-    background:var(--card);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border:1px solid var(--card-border);
-    border-radius:26px;
-    padding:32px 28px;
-    box-shadow: 0 30px 60px -20px rgba(255,143,196,0.35);
-    text-align:left;
+  /* ---------- chat frame ---------- */
+  .phone{
+    width:100%;max-width:440px;margin:0 auto;overflow:hidden;
+    position:relative;border-radius:32px;
+    background:linear-gradient(150deg,rgba(255,255,255,.46),rgba(255,228,222,.2));
+    -webkit-backdrop-filter:blur(30px) saturate(190%);backdrop-filter:blur(30px) saturate(190%);
+    border:1px solid rgba(255,255,255,.6);
+    box-shadow:inset 0 1.5px 0 rgba(255,255,255,.9),inset 0 -1px 0 rgba(255,255,255,.3),inset 0 0 36px rgba(255,255,255,.2),0 34px 60px -30px rgba(74,31,42,.4);
   }
+  .phone::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;background:radial-gradient(120% 55% at 10% 0%,rgba(255,255,255,.5),rgba(255,255,255,0) 55%),radial-gradient(80% 40% at 100% 100%,rgba(255,255,255,.22),rgba(255,255,255,0) 60%)}
+  .top,.log,.composer{position:relative;z-index:1}
+  @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.phone{background:var(--blush)}}
+  .top{display:flex;align-items:center;gap:12px;padding:14px 18px;background:rgba(255,255,255,.28);border-bottom:1px solid rgba(255,255,255,.55)}
+  .avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(145deg,rgba(255,255,255,.75),rgba(255,154,144,.8));box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 8px 16px -8px rgba(224,88,63,.55);display:grid;place-items:center;font-size:20px}
+  .top b{display:block;font-size:16px;font-weight:700;line-height:1.2}
+  .top span{font-size:13px;color:var(--muted)}
 
-  /* chat preview */
-  .phone-strip{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    background:rgba(255,255,255,0.55);
-    border:1px solid rgba(255,143,196,0.25);
-    border-radius:16px;
-    padding:12px 14px;
-    margin-bottom:24px;
-  }
-  .avatar{
-    width:38px;height:38px;border-radius:50%;
-    background:linear-gradient(135deg, var(--pink-deep), var(--sky-deep));
-    display:flex;align-items:center;justify-content:center;
-    font-family:'Baloo 2',sans-serif;font-weight:700;font-size:15px;color:#fff;
-    flex-shrink:0;
-  }
-  .phone-strip .info{ flex:1; min-width:0; }
-  .phone-strip .pname{
-    font-family:'Baloo 2', sans-serif;
-    font-weight:600;
-    font-size:14px;
-    color:var(--text);
-    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-  }
-  .phone-strip .pnum{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12px;
-    color:var(--pink-deep);
-  }
-  .phone-strip .pnum.empty{ color:var(--muted); font-style:italic; font-family:'Inter',sans-serif; }
-  .wa-icon{ flex-shrink:0; opacity:0.85; }
+  .log{display:flex;flex-direction:column;gap:8px;padding:20px 18px 16px;min-height:300px}
+  .bubble{max-width:84%;padding:10px 14px;border-radius:20px;line-height:1.45;font-size:15.5px;overflow-wrap:anywhere}
+  .bubble.her{align-self:flex-start;border-bottom-left-radius:6px;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.75);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 10px 20px -14px rgba(74,31,42,.45)}
+  .bubble.me{align-self:flex-end;border-bottom-right-radius:6px;background:linear-gradient(145deg,rgba(255,176,166,.82),rgba(255,128,124,.66));border:1px solid rgba(255,255,255,.6);-webkit-backdrop-filter:blur(12px) saturate(160%);backdrop-filter:blur(12px) saturate(160%);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.7),0 12px 22px -14px rgba(224,88,63,.6)}
+  .bubble.in{animation:pop .28s cubic-bezier(.3,1.4,.5,1)}
+  @keyframes pop{from{opacity:0;transform:translateY(6px) scale(.94)}to{opacity:1;transform:none}}
+  .ph{opacity:.55}
+  .me.sent::after{content:"Terkirim";display:block;text-align:right;font-size:11.5px;margin-top:2px;opacity:.7}
+  .typing{display:flex;gap:4px;padding:14px 16px}
+  .typing i{width:7px;height:7px;border-radius:50%;background:var(--muted);opacity:.5;animation:blink 1s infinite}
+  .typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+  @keyframes blink{40%{opacity:1;transform:translateY(-3px)}}
 
-  label{
-    display:block;
-    font-family:'Baloo 2', sans-serif;
-    font-size:13px;
-    font-weight:600;
-    color:var(--pink-deep);
-    margin-bottom:8px;
-  }
-  .field{ margin-bottom:18px; }
-  .input-shell{ position:relative; display:flex; align-items:center; }
-  .input-shell .prefix{
-    position:absolute; left:16px;
-    color:var(--muted);
-    font-family:'IBM Plex Mono', monospace;
-    font-size:14px;
-    pointer-events:none;
-  }
+  /* ---------- composer (the form) ---------- */
+  .composer{background:rgba(255,255,255,.3);padding:16px 18px 20px;border-top:1px solid rgba(255,255,255,.55)}
+  .field{margin-bottom:12px}
+  label{display:block;font-size:14px;font-weight:600;margin-bottom:5px}
+  .shell{position:relative}
+  .prefix{position:absolute;left:0;top:0;bottom:0;width:56px;display:grid;place-items:center;font-weight:600;color:var(--muted);border-right:1.5px solid var(--edge);pointer-events:none}
   input{
-    width:100%;
-    background:rgba(255,255,255,0.7);
-    border:1.5px solid rgba(255,143,196,0.3);
-    border-radius:14px;
-    padding:14px 16px;
-    color:var(--text);
-    font-size:15px;
-    font-family:'Inter', sans-serif;
-    outline:none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width:100%;height:50px;padding:0 16px;font:500 16px 'Figtree',sans-serif;color:var(--ink);
+    background:rgba(255,255,255,.58);border:1.5px solid rgba(255,255,255,.8);border-radius:16px;outline:none;
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    box-shadow:inset 0 2px 6px rgba(74,31,42,.09),inset 0 1px 0 rgba(255,255,255,.9);
+    transition:border-color .15s,box-shadow .15s;
   }
-  input#wa_number{ padding-left:46px; font-family:'IBM Plex Mono', monospace; }
-  input::placeholder{ color:#C4A9BD; }
-  input:focus{ border-color:var(--pink-deep); box-shadow:0 0 0 4px rgba(255,95,168,0.15); }
-  input.invalid{ border-color:var(--danger); }
-  .error-msg{ font-size:12px; color:var(--danger); margin-top:6px; min-height:14px; display:none; }
-  .error-msg.show{ display:block; }
+  input#wa_number{padding-left:70px;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+  input::placeholder{color:#94706C;font-weight:400}
+  input:focus-visible{border-color:var(--ink);box-shadow:0 0 0 3px var(--rose)}
+  input[aria-invalid="true"]{border-color:var(--danger)}
+  .err{display:none;font-size:13px;color:var(--danger);margin-top:5px;line-height:1.4}
+  .err.show{display:block}
 
-  button{
-    width:100%;
-    margin-top:6px;
-    background: linear-gradient(135deg, var(--pink-deep), var(--sky-deep));
-    color:#fff;
-    border:none;
-    border-radius:14px;
-    padding:16px 20px;
-    font-family:'Baloo 2', sans-serif;
-    font-weight:700;
-    font-size:16px;
-    cursor:pointer;
-    display:flex; align-items:center; justify-content:center; gap:8px;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
-    box-shadow: 0 14px 28px -10px rgba(255,95,168,0.55);
+  .send{
+    width:100%;height:52px;margin-top:4px;border:0;border-radius:999px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:9px;
+    background:linear-gradient(145deg,rgba(112,52,70,.94),rgba(74,31,42,.94));color:var(--shell);font:700 16px 'Figtree',sans-serif;
+    border:1px solid rgba(255,255,255,.28);
+    box-shadow:inset 0 1.5px 0 rgba(255,255,255,.38),inset 0 -3px 8px rgba(0,0,0,.2),0 14px 24px -10px rgba(74,31,42,.65);
+    transition:background .15s,transform .1s;
   }
-  button:hover{ transform: translateY(-2px); box-shadow: 0 18px 34px -10px rgba(255,95,168,0.65); }
-  button:active{ transform: translateY(0); }
-  button:disabled{ opacity:0.6; cursor:not-allowed; transform:none; }
+  .send:hover{filter:brightness(1.2)}
+  .send:active{transform:scale(.98)}
+  .send:disabled{cursor:wait;opacity:.8}
+  .send:focus-visible,.again:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+  .spin{display:none;width:17px;height:17px;border:2.5px solid rgba(255,246,243,.35);border-top-color:var(--shell);border-radius:50%;animation:rot .7s linear infinite}
+  .send.loading .spin{display:block}.send.loading svg{display:none}
+  @keyframes rot{to{transform:rotate(360deg)}}
 
-  .status{ margin-top:14px; font-size:13px; text-align:center; min-height:18px; }
-  .status.ok{ color:var(--pink-deep); }
-  .status.err{ color:var(--danger); }
+  .done{display:none;text-align:center}
+  .done.show{display:block}
+  .again{border:1.5px solid rgba(74,31,42,.6);background:rgba(255,255,255,.42);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:inset 0 1px 0 rgba(255,255,255,.9);color:var(--ink);font:600 15px 'Figtree',sans-serif;padding:11px 22px;border-radius:999px;cursor:pointer}
+  .again:hover{background:var(--blush)}
 
-  .privacy{
-    margin-top:20px;
-    font-size:11.5px;
-    color:var(--muted);
-    text-align:center;
-    line-height:1.5;
+  /* ---------- haptic (visual + getar) ---------- */
+  .send{position:relative;overflow:hidden;isolation:isolate}
+  .send:active{transform:scale(.965,.94)}
+  .ripple{position:absolute;z-index:-1;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(255,255,255,.8),rgba(255,255,255,0) 70%);transform:scale(0);animation:rip .6s ease-out forwards}
+  @keyframes rip{to{transform:scale(22);opacity:0}}
+  .bubble.jelly{animation:jelly .34s cubic-bezier(.3,1.6,.5,1)}
+  @keyframes jelly{30%{transform:scale(1.04,.96)}60%{transform:scale(.99,1.02)}}
+  .composer.shake{animation:shake .38s}
+  @keyframes shake{20%{transform:translateX(-6px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(2px)}}
+  .hx{position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
+  .haptic-btn{margin-left:auto;width:38px;height:38px;border-radius:50%;cursor:pointer;display:grid;place-items:center;font-size:17px;background:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.8);box-shadow:inset 0 1px 0 rgba(255,255,255,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:opacity .2s}
+  .haptic-btn:active{transform:scale(.9)}
+  .haptic-btn[aria-pressed="false"]{opacity:.5}
+  .haptic-btn:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+
+  /* ---------- desktop ---------- */
+  @media (min-width:900px){
+    .page{grid-template-columns:1fr 440px;gap:88px;align-items:center;padding:48px 32px}
+    h1{font-size:68px;margin-bottom:20px}
+    .lead{font-size:19px}
   }
-
-  .success-check{ display:none; text-align:center; padding:16px 0 8px; }
-  .success-check.show{ display:block; }
-  .success-check .circle{
-    width:56px;height:56px;border-radius:50%;
-    background:rgba(255,143,196,0.2);
-    display:flex;align-items:center;justify-content:center;
-    margin:0 auto 16px;
-  }
-  .success-check h3{ font-family:'Baloo 2', sans-serif; margin:0 0 6px; font-size:18px; color:var(--pink-deep); }
-  .success-check p{ color:var(--muted); font-size:13px; margin:0; }
-
-  @media (max-width: 480px){
-    .card{ padding:26px 20px; border-radius:22px; }
-    .page{ padding:40px 16px 48px; }
-  }
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
+<div class="aurora" aria-hidden="true"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i><i class="orb o4"></i><i class="orb o5"></i></div>
 
-<div class="blob-field">
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
-  <div class="blob b3"></div>
-  <div class="blob b4"></div>
-</div>
+<main class="page">
+  <header>
+    <h1>Nggak perlu lama, langsung ke WA aja 🎀</h1>
+    <p class="lead">Haii, silakan isi nomor WhatsApp kamu yaa di sini. Nanti aku balas notif kamu.</p>
+  </header>
 
-<div class="page">
-  <div class="badge"><span class="dot"></span>Balas cepat lewat WhatsApp</div>
-
-  <h1>Nggak perlu lama,<br>langsung ke <span class="hl">WA</span> aja 🎀</h1>
-  <p class="lead">Haii silahkan kamu isi nomor Whatsapp kamu yaa disini. Nanti aku balas notif kamu yaa 🎀🎀.</p>
-
-  <div class="card">
-    <div class="phone-strip">
-      <div class="avatar" id="avatarInitial">?</div>
-      <div class="info">
-        <div class="pname" id="previewName">Nama kamu di sini</div>
-        <div class="pnum empty" id="previewNumber">Nomor WA belum diisi</div>
-      </div>
-      <svg class="wa-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF5FA8" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 01-12.4 7.5L3 20l1.1-5.4A8.5 8.5 0 1121 11.5z"/></svg>
+  <section class="phone" aria-label="Kirim nomor WhatsApp">
+    <div class="top">
+      <div class="avatar" aria-hidden="true">🎀</div>
+      <div><b>Aku</b><span>Balas lewat WhatsApp</span></div>
+      <button type="button" class="haptic-btn" id="hapBtn" aria-pressed="true" aria-label="Getaran nyala" title="Getaran">📳</button>
     </div>
 
-    <div id="formArea">
+    <div class="log" id="log" role="log" aria-live="polite">
+      <div class="bubble me" id="me" hidden>
+        Aku <span class="ph" id="mName">(nama kamu)</span> 👋<br>
+        WA-ku +62 <span class="ph" id="mNum">8xxxxxxxxxx</span>
+      </div>
+    </div>
+
+    <div class="composer">
       <form id="waForm" novalidate>
         <div class="field">
           <label for="full_name">Nama</label>
-          <div class="input-shell">
-            <input type="text" id="full_name" name="full_name" placeholder="Nama lengkap" autocomplete="name">
-          </div>
-          <div class="error-msg" id="err_name">Nama wajib diisi.</div>
+          <input type="text" id="full_name" name="full_name" placeholder="Nama lengkap" autocomplete="name" aria-describedby="eName">
+          <div class="err" id="eName">Isi nama minimal 2 huruf.</div>
         </div>
-
         <div class="field">
           <label for="wa_number">Nomor WhatsApp</label>
-          <div class="input-shell">
+          <div class="shell">
             <span class="prefix">+62</span>
-            <input type="tel" id="wa_number" name="wa_number" placeholder="812xxxxxxxx" autocomplete="tel" inputmode="numeric">
+            <input type="tel" id="wa_number" name="wa_number" placeholder="812xxxxxxxx" inputmode="numeric" autocomplete="tel-national" aria-describedby="eNum">
           </div>
-          <div class="error-msg" id="err_number">Sesuaikan nomor WA yang kamu masuk yaa.</div>
+          <div class="err" id="eNum">Nomor WA harus 9 sampai 13 angka.</div>
         </div>
-
-        <!-- Web3Forms: kunci akses & tujuan email -->
+        <!-- Web3Forms -->
         <input type="hidden" name="access_key" value="6186daa6-ad36-4246-b78d-adb054de2120">
         <input type="hidden" name="subject" value="Data WA baru masuk">
         <input type="hidden" name="from_name" value="Website WA Form">
         <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
-        <button type="submit" id="submitBtn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M21 11.5a8.5 8.5 0 01-12.4 7.5L3 20l1.1-5.4A8.5 8.5 0 1121 11.5z"/></svg>
-          Kirim Sekarang
+        <button type="submit" class="send" id="sendBtn">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+          <span class="spin"></span>
+          <span id="sendText">Kirim nomor WA</span>
         </button>
-        <div class="status" id="statusMsg"></div>
       </form>
-
-      <div class="success-check" id="successCheck">
-        <div class="circle">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF5FA8" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <h3>Terkirim! 🎀</h3>
-        <p>Terima Kasih udah ngirim nomor WA kamu, nanti aku langsung balas kok😊</p>
+      <div class="done" id="done">
+        <button type="button" class="again" id="again">Isi lagi</button>
       </div>
     </div>
-
-    <p class="privacy">oh iya nomor kamu aman aja kok cuma aku aja yang tahu nomor kamu jadi santai aja.</p>
-  </div>
-</div>
+  </section>
+</main>
+<label class="hx" aria-hidden="true"><input type="checkbox" switch id="hx" tabindex="-1"></label>
 
 <script>
-  // ---- floating sparkles ----
-  const sparkles = ['✨','🎀','💗'];
-  for (let i = 0; i < 12; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    p.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
-    p.style.left = Math.random() * 100 + 'vw';
-    p.style.bottom = '-20px';
-    p.style.fontSize = (Math.random() * 10 + 10) + 'px';
-    p.style.animationDuration = (Math.random() * 12 + 12) + 's';
-    p.style.animationDelay = (Math.random() * 10) + 's';
-    document.body.appendChild(p);
+  const $ = id => document.getElementById(id);
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const wait = ms => new Promise(r => setTimeout(r, reduce ? 0 : ms));
+  const log = $('log'), me = $('me');
+  const form = $('waForm'), nameIn = $('full_name'), numIn = $('wa_number');
+  const mName = $('mName'), mNum = $('mNum');
+  const eName = $('eName'), eNum = $('eNum');
+  const sendBtn = $('sendBtn'), sendText = $('sendText'), done = $('done');
+  let replies = [];
+
+  // ---- haptic: getar di Android, switch-trick di iOS Safari ----
+  let hapticOn = true, lastTick = 0;
+  const hx = $('hx'), hapBtn = $('hapBtn'), composer = document.querySelector('.composer');
+  const PATTERNS = { tick: [5], tap: [10], success: [16, 50, 26], error: [34, 45, 34] };
+  function haptic(kind) {
+    if (!hapticOn) return;
+    const p = PATTERNS[kind] || [10];
+    try {
+      if (navigator.vibrate) { navigator.vibrate(p); }
+      else if (hx) {
+        let t = 0;
+        p.forEach((ms, i) => { if (i % 2 === 0) setTimeout(() => hx.click(), t); t += ms; });
+      }
+    } catch (_) {}
+  }
+  function restart(el, cls) {
+    if (reduce || !el || el.hidden) return;
+    el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls);
+  }
+  hapBtn.addEventListener('click', () => {
+    hapticOn = !hapticOn;
+    hapBtn.setAttribute('aria-pressed', hapticOn);
+    hapBtn.setAttribute('aria-label', hapticOn ? 'Getaran nyala' : 'Getaran mati');
+    haptic('tap');
+  });
+  sendBtn.addEventListener('pointerdown', e => {
+    haptic('tap');
+    if (reduce) return;
+    const r = sendBtn.getBoundingClientRect();
+    const s = document.createElement('span');
+    s.className = 'ripple';
+    s.style.left = (e.clientX - r.left) + 'px';
+    s.style.top = (e.clientY - r.top) + 'px';
+    sendBtn.appendChild(s);
+    setTimeout(() => s.remove(), 650);
+  });
+  [nameIn, numIn].forEach(i => {
+    i.addEventListener('focus', () => haptic('tick'));
+    i.addEventListener('input', () => {
+      const n = performance.now();
+      if (n - lastTick > 70) { lastTick = n; haptic('tick'); }
+      restart(me, 'jelly');
+    });
+  });
+
+  // ---- percakapan: satu momen pembuka ----
+  async function say(text, after) {
+    const ref = after ? null : me;
+    const t = document.createElement('div');
+    t.className = 'bubble her typing';
+    t.setAttribute('aria-hidden', 'true');
+    t.innerHTML = '<i></i><i></i><i></i>';
+    log.insertBefore(t, ref);
+    await wait(750);
+    t.remove();
+    const b = document.createElement('div');
+    b.className = 'bubble her in';
+    b.textContent = text;
+    log.insertBefore(b, ref);
+    if (after) replies.push(b);
   }
 
-  // ---- live chat preview ----
-  const nameInput = document.getElementById('full_name');
-  const numberInput = document.getElementById('wa_number');
-  const previewName = document.getElementById('previewName');
-  const previewNumber = document.getElementById('previewNumber');
-  const avatarInitial = document.getElementById('avatarInitial');
+  (async () => {
+    await say('Haii! 🎀');
+    await say('Isi nama dan nomor WhatsApp kamu di bawah yaa.');
+    await say('Nanti aku balas langsung lewat WA. Nomor kamu aman, cuma aku yang lihat.');
+    me.hidden = false;
+    me.classList.add('in');
+  })();
 
-  nameInput.addEventListener('input', () => {
-    const v = nameInput.value.trim();
-    previewName.textContent = v.length ? v : 'Nama kamu di sini';
-    avatarInitial.textContent = v.length ? v.charAt(0).toUpperCase() : '?';
+  // ---- input terhubung ke bubble ----
+  function setPh(el, val, placeholder) {
+    el.textContent = val || placeholder;
+    el.classList.toggle('ph', !val);
+  }
+  nameIn.addEventListener('input', () => {
+    setPh(mName, nameIn.value.trim(), '(nama kamu)');
+    if (nameIn.value.trim().length >= 2) clear(nameIn, eName);
+  });
+  numIn.addEventListener('input', () => {
+    let v = numIn.value.replace(/\D/g, '');
+    if (v.startsWith('62')) v = v.slice(2);
+    v = v.replace(/^0+/, '');
+    numIn.value = v;
+    setPh(mNum, v, '8xxxxxxxxxx');
+    if (v.length >= 9) clear(numIn, eNum);
   });
 
-  numberInput.addEventListener('input', () => {
-    numberInput.value = numberInput.value.replace(/[^0-9]/g, '');
-    const v = numberInput.value.trim();
-    if (v.length) {
-      previewNumber.textContent = '+62 ' + v;
-      previewNumber.classList.remove('empty');
-    } else {
-      previewNumber.textContent = 'Nomor WA belum diisi';
-      previewNumber.classList.add('empty');
-    }
-  });
-
-  // ---- validation + submit ----
-  const form = document.getElementById('waForm');
-  const submitBtn = document.getElementById('submitBtn');
-  const statusMsg = document.getElementById('statusMsg');
-  const errName = document.getElementById('err_name');
-  const errNumber = document.getElementById('err_number');
-  const successCheck = document.getElementById('successCheck');
-
-  // Web3Forms: endpoint tetap sama untuk semua pengguna, yang membedakan adalah access_key di dalam form
-  const FORM_ENDPOINT = "https://api.web3forms.com/submit";
-  const ACCESS_KEY_PLACEHOLDER = "GANTI_DENGAN_ACCESS_KEY_KAMU";
+  function clear(input, err) { input.removeAttribute('aria-invalid'); err.classList.remove('show'); }
+  function flag(input, err) { input.setAttribute('aria-invalid', 'true'); err.classList.add('show'); }
 
   function validate() {
-    let ok = true;
-    const nameVal = nameInput.value.trim();
-    const numVal = numberInput.value.trim();
-
-    if (nameVal.length < 2) {
-      nameInput.classList.add('invalid');
-      errName.classList.add('show');
-      ok = false;
-    } else {
-      nameInput.classList.remove('invalid');
-      errName.classList.remove('show');
-    }
-
-    if (numVal.length < 9 || numVal.length > 14) {
-      numberInput.classList.add('invalid');
-      errNumber.classList.add('show');
-      ok = false;
-    } else {
-      numberInput.classList.remove('invalid');
-      errNumber.classList.remove('show');
-    }
-    return ok;
+    const okName = nameIn.value.trim().length >= 2;
+    const n = numIn.value.length, okNum = n >= 9 && n <= 13;
+    okName ? clear(nameIn, eName) : flag(nameIn, eName);
+    okNum ? clear(numIn, eNum) : flag(numIn, eNum);
+    if (!okName) nameIn.focus(); else if (!okNum) numIn.focus();
+    return okName && okNum;
   }
 
-  [nameInput, numberInput].forEach(el => el.addEventListener('blur', validate));
+  function setLoading(on) {
+    sendBtn.disabled = on;
+    sendBtn.classList.toggle('loading', on);
+    sendText.textContent = on ? 'Mengirim…' : 'Kirim nomor WA';
+  }
 
-  form.addEventListener('submit', async (e) => {
+  // ---- kirim ke Web3Forms ----
+  const ENDPOINT = 'https://api.web3forms.com/submit';
+
+  form.addEventListener('submit', async e => {
     e.preventDefault();
-    if (!validate()) return;
-
-    const accessKeyValue = form.querySelector('input[name="access_key"]').value;
-    if (accessKeyValue === ACCESS_KEY_PLACEHOLDER || !accessKeyValue) {
-      statusMsg.textContent = 'Access Key belum diisi. Lihat petunjuk di README.';
-      statusMsg.className = 'status err';
-      return;
-    }
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Mengirim...';
-    statusMsg.textContent = '';
-    statusMsg.className = 'status';
-
+    if (!validate()) { haptic('error'); restart(composer, 'shake'); return; }
+    replies.forEach(r => r.remove()); replies = [];
+    setLoading(true);
     try {
-      const res = await fetch(FORM_ENDPOINT, {
+      const data = new FormData(form);
+      data.set('wa_number', '+62' + numIn.value);
+      const res = await fetch(ENDPOINT, {
         method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(form)
+        headers: { Accept: 'application/json' },
+        body: data
       });
       const result = await res.json();
+      if (!res.ok || !result.success) throw new Error('gagal');
 
-      if (res.ok && result.success) {
-        form.style.display = 'none';
-        successCheck.classList.add('show');
-      } else {
-        statusMsg.textContent = 'Gagal mengirim. Coba lagi sebentar lagi.';
-        statusMsg.className = 'status err';
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Kirim & Chat Sekarang';
-      }
-    } catch (err) {
-      statusMsg.textContent = 'Terjadi kesalahan jaringan. Coba lagi.';
-      statusMsg.className = 'status err';
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Kirim & Chat Sekarang';
+      form.style.display = 'none';
+      me.classList.add('sent');
+      done.classList.add('show');
+      haptic('success');
+      await say('Terkirim! Makasih yaa, nanti aku langsung balas lewat WhatsApp 😊', true);
+      $('again').focus();
+    } catch (_) {
+      setLoading(false);
+      haptic('error');
+      restart(composer, 'shake');
+      await say('Yah, nomornya belum terkirim. Cek koneksi internet kamu lalu coba kirim lagi yaa.', true);
     }
   });
-</script>
 
+  $('again').addEventListener('click', () => {
+    haptic('tap');
+    replies.forEach(r => r.remove()); replies = [];
+    form.reset();
+    setPh(mName, '', '(nama kamu)'); setPh(mNum, '', '8xxxxxxxxxx');
+    me.classList.remove('sent');
+    done.classList.remove('show');
+    form.style.display = '';
+    setLoading(false);
+    nameIn.focus();
+  });
+</script>
 </body>
 </html>
